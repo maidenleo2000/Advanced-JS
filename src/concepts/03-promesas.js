@@ -31,12 +31,24 @@ export const promiseComponent = (element) => {
     const id1 = '5d86371fd55e2e2a30fe1ccb';
     const id2 = '5d86371f97c29d020f1e1f6d';
 
-
+    
     //USAR LA PROMESA
+
     findHero(id1)
+        .then( (hero1) => {            
+            findHero(id2)
+                .then( hero2 => {
+                    renderTwoHeros(hero1, hero2)
+                })
+                .catch(renderError); //captura error 2
+        }) 
+        .catch(renderError);//captura error 1
+
+
+    //findHero(id1)
         //.then(cualquierNombre => renderHero(cualquierNombre));
-        .then(renderHero) //esto es lo mismo que arriba en el caso que los argumentos de la izquierda los use en el mismo orden que en el pase a funcion de la derecha. Es decir lo que devuelve la promesa lo envia a la funcion.
-        .catch(error => renderError(error));
+     //   .then(renderHero) //esto es lo mismo que arriba en el caso que los argumentos de la izquierda los use en el mismo orden que en el pase a funcion de la derecha. Es decir lo que devuelve la promesa lo envia a la funcion.
+     //   .catch(error => renderError(error));
 
 
 }
