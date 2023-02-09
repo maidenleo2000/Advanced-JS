@@ -9,7 +9,7 @@ export const calbacksComponent = (element) =>{
 
     const id1 = '5d86371f9f80b591f499df32';
     const id2 = '5d86371fd55e2e2a30fe1ccb2';
-    findHero(id1, (error, hero)=> {
+    findHero(id1, (error, hero1)=> {
         //element.innerHTML = hero?.name || 'No hay heroe';
 
         //Manejo de errores callbacks
@@ -17,7 +17,16 @@ export const calbacksComponent = (element) =>{
             element.innerHTML = error;
             return;
         }
-        element.innerHTML = hero.name;
+
+        findHero(id2, (error, hero2) =>{
+
+            if (error){
+                element.innerHTML = error;
+                return;
+            }
+            element.innerHTML = `${hero1.name} / ${hero2.name}`;
+        })
+        
     });
 }
 
